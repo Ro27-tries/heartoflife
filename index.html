@@ -15,14 +15,12 @@
 ============================================================================
 
 1) PHOTOS
-   - Put photos in the "images" folder and push. That's it: the page reads
-     the folder list from GitHub.
-   - Banner carousel: any photo whose name starts with "banner" (banner-1.jpg, banner-2.jpg ...).
-   - About section: "portrait.jpg" (or .jpeg/.png).
-   - Gallery: if "images/gallery" exists, every photo in it (large, ~1600px),
-     with small copies of the same names in "images/thumbs" (~500px) for the grid.
-     Otherwise every photo in "images" except the portrait.
-   - Keep photos small (about 1600px wide) so the page loads quickly.
+   - Banner carousel: images/banner-1.jpg, banner-2.jpg, ... numbered with no gaps
+     (.jpg/.jpeg/.png all work). Add banner-10 to add another.
+   - About section: images/portrait.jpg (or .jpeg/.png).
+   - Gallery: images/gallery/001.jpg, 002.jpg ... (~1600px) with matching small copies
+     in images/thumbs/ (~600px). make-gallery.sh creates these for you.
+   - Keep photos around 1600px wide so the page loads quickly on phones.
 
 2) MEMORY WALL (via Google Forms + Google Sheets, posts appear automatically)
    a. Create a Google Form with three questions, in this order:
@@ -806,11 +804,9 @@
    CONFIG — edit this block
    ========================================================================== */
 const CONFIG = {
-  // Photos are found automatically from the GitHub repo's "images" folder:
-  //   - banner carousel: every image whose name starts with "banner"
-  //   - gallery: every image in the folder (except "portrait")
-  // The lists below are only used if GitHub can't be reached.
-  githubRepo: "arindamkalra/heartoflife",
+  // Photos are found by name in the "images" folder:
+  //   - banner carousel: banner-1, banner-2, ... (stops at the first missing number)
+  //   - gallery: gallery/001.jpg, 002.jpg ... with thumbs/001.jpg ... (loads when the Gallery tab is opened)
   imagesFolder: "images",
 
   // Banner carousel (right side of the banner)
@@ -891,42 +887,37 @@ function findImage(src) {
     tryNext();
   });
 }
-// Lists image files in a repo folder via GitHub's public API (cached per visit)
-const _repoCache = {};
-function repoImages(folder) {
-  if (_repoCache[folder]) return _repoCache[folder];
-  return _repoCache[folder] = (async () => {
-    if (!CONFIG.githubRepo) return null;
-    try {
-      const res = await fetch("https://api.github.com/repos/" + CONFIG.githubRepo + "/contents/" + folder);
-      if (!res.ok) return null;
-      const files = (await res.json())
-        .filter(f => f.type === "file" && /\.(jpe?g|png|webp|gif)$/i.test(f.name))
-        .map(f => f.name)
-        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
-      return files.length ? files : null;
-    } catch (e) { return null; }
-  })();
+// Photos are found by their names directly (no GitHub API, so no rate limits):
+//   banners: images/banner-1, banner-2, ... (.jpg/.jpeg/.png/.webp), until one is missing
+//   gallery: images/gallery/001.jpg, 002.jpg, ... with thumbnails in images/thumbs/
+function exists(url) {
+  return new Promise(res => { const i = new Image(); i.onload = () => res(true); i.onerror = () => res(false); i.src = url; });
 }
-const enc = path => path.split("/").map(encodeURIComponent).join("/");
-async function resolveList(filter, fallback) {
-  const files = await repoImages(CONFIG.imagesFolder);
-  if (files) return files.filter(filter).map(n => ({ caption: "", url: enc(CONFIG.imagesFolder + "/" + n) }));
-  return (await Promise.all(fallback.map(async im => ({ ...im, url: await findImage(im.src) })))).filter(im => im.url);
-}
-// Gallery: images/gallery (large) + images/thumbs (small, same names) if present,
-// otherwise every photo in images/ except the portrait.
-async function galleryList() {
-  const big = await repoImages(CONFIG.imagesFolder + "/gallery");
-  if (big) {
-    const thumbs = new Set((await repoImages(CONFIG.imagesFolder + "/thumbs")) || []);
-    return big.map(n => ({
-      caption: "",
-      url: enc(CONFIG.imagesFolder + "/gallery/" + n),
-      thumb: enc(CONFIG.imagesFolder + "/" + (thumbs.has(n) ? "thumbs/" : "gallery/") + n),
+async function findNumbered(makeSrc, batch = 8, exact = false, max = 999) {
+  const found = [];
+  for (let start = 1; start <= max; start += batch) {
+    const nums = Array.from({ length: batch }, (_, k) => start + k);
+    const urls = await Promise.all(nums.map(async n => {
+      const src = makeSrc(n);
+      return exact ? ((await exists(src)) ? src : null) : findImage(src);
     }));
+    for (const u of urls) { if (!u) return found; found.push(u); }
   }
-  return resolveList(n => !/^portrait\./i.test(n), CONFIG.galleryImages);
+  return found;
+}
+async function bannerList() {
+  const urls = await findNumbered(n => CONFIG.imagesFolder + "/banner-" + n + ".jpg", 6);
+  return urls.map(url => ({ url, caption: "" }));
+}
+async function galleryList() {
+  const pad = n => String(n).padStart(3, "0");
+  // Look for thumbnails first (small, quick); the large version opens on click
+  const thumbs = await findNumbered(n => CONFIG.imagesFolder + "/thumbs/" + pad(n) + ".jpg", 12, true);
+  if (thumbs.length) {
+    return thumbs.map(t => ({ caption: "", thumb: t, url: t.replace("/thumbs/", "/gallery/") }));
+  }
+  const big = await findNumbered(n => CONFIG.imagesFolder + "/gallery/" + pad(n) + ".jpg", 12, true);
+  return big.map(url => ({ caption: "", url }));
 }
 
 // Puts a photo in a frame without cropping off heads (see .frame-bg CSS)
@@ -963,7 +954,7 @@ function makeImg(url, alt) {
 (async function () {
   const root = document.getElementById("carousel");
   const dotsEl = document.getElementById("dots");
-  const found = await resolveList(n => /^banner/i.test(n), CONFIG.carouselImages);
+  const found = await bannerList();
   let i = 0, timer;
   const btns = root.querySelectorAll(".carousel-btn");
 
@@ -1030,6 +1021,7 @@ findImage(CONFIG.aboutPhoto).then(url => {
    ========================================================================== */
 const tabs = document.querySelectorAll(".tab");
 function showTab(id, scroll) {
+  if (id === "gallery") initGallery();
   document.querySelectorAll("#" + id + " iframe[data-src]").forEach(f => { f.src = f.dataset.src; f.removeAttribute("data-src"); });
   tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.tab === id));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === id));
@@ -1050,7 +1042,9 @@ if (document.getElementById(initial)?.classList.contains("panel")) showTab(initi
 /* ==========================================================================
    Gallery + lightbox (only photos that exist are shown)
    ========================================================================== */
-(async function () {
+var _galleryStarted = false;
+async function initGallery() {
+  if (_galleryStarted) return; _galleryStarted = true;
   const grid = document.getElementById("galleryGrid");
   const lb = document.getElementById("lightbox");
   const media = document.getElementById("lbMedia");
@@ -1103,7 +1097,7 @@ if (document.getElementById(initial)?.classList.contains("panel")) showTab(initi
     if (e.key === "ArrowLeft") step(-1);
     if (e.key === "ArrowRight") step(1);
   });
-})();
+}
 
 /* ==========================================================================
    Memory wall

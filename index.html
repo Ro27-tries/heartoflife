@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>In Loving Memory of Sukeerth</title>
+<title>K.V. Sukeerth (1996–2026)</title>
 <meta name="description" content="A place to remember Sukeerth — his life, our memories, and the moments we shared." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,11 +111,12 @@
     align-items: center;
   }
   .eyebrow {
-    font-size: 0.78rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
     color: var(--gold);
-    font-weight: 400;
+    font-weight: 500;
   }
   .name {
     font-size: clamp(3.2rem, 7vw, 5.4rem);
@@ -203,7 +204,7 @@
   }
   .rsvp-card h3 { font-size: 2rem; line-height: 1.15; }
   .rsvp-sub { color: var(--ink-soft); font-size: 0.95rem; margin: 6px 0 24px; }
-  .choice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px; }
+  .choice { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 28px; }
   .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
   .choice label {
     margin: 0; text-transform: none; letter-spacing: 0; font-size: 0.92rem; color: var(--ink);
@@ -552,8 +553,8 @@
 <header class="banner">
   <div class="banner-inner">
     <div class="banner-text">
-      <div class="eyebrow">In Loving Memory</div>
-      <h1 class="name">Sukeerth</h1>
+      <div class="eyebrow">You’re going to live forever in me</div>
+      <h1 class="name">K.V. Sukeerth</h1>
       <div class="dates">1996 &nbsp;—&nbsp; 2026</div>
       <div class="divider"></div>
       <p class="tagline">"A line that captures who he was, a favourite saying, or words from the family."</p>
@@ -592,12 +593,11 @@
     <div class="about">
       <div class="about-photo" id="aboutPhoto"></div>
       <div class="about-text">
-        <span class="placeholder-note">Placeholder text — replace with your words</span>
-        <p>Sukeerth was born in [city] and grew up surrounded by [family, friends, the things that shaped him]. This opening paragraph can introduce who he was: where he came from, and the warmth he brought to every room he walked into.</p>
-        <p>Write here about what he loved: his work, his passions, the music he played on repeat, the places he wanted to see, the small habits everyone who knew him will recognise instantly.</p>
-        <p>This paragraph can hold the people closest to him: his family, his friends, the circles he belonged to, and the ways he showed up for them.</p>
-        <p>Close with what he leaves behind: the lessons, the laughter, and the way he will continue to live on in all of us.</p>
-        <blockquote class="quote">"A favourite quote, a line he often said, or a few words from the family can go here."</blockquote>
+        <p>Sukeerth was a big man, with an even bigger heart, always decked in fancy sweaters in every Bengaluru weather. He loved playing games with his cousins, he loved seeing the world with his parents, he loved listening to his grandparents’ stories, he loved performing with his friends, and he loved spending time with everyone he loved — a logistical challenge that came so easy to him.</p>
+        <p>Sukeerth truly embodied the belief that music is life and life is a musical. His toddler cries helped crack high pitches. His Carnatic training helped build his range. His school choir revealed it to all of us. College was where Sukeerth explored different genres and styles, taught himself the guitar and keyboard, performed at Battle of the Bands competitions and inter-collegiate festivals, and embraced every opportunity to be on stage. It was also during this time that he and his friends formed The Nice Guys.</p>
+        <p>What started as a college band soon became something much bigger. The Nice Guys wrote original music, collaborated with other artists, performed in multiple cities / venues, and elevated every experience they were at. For Sukeerth, music was never just about performing; it was about bringing people together, creating memories, and sharing joy. Whether on stage or in a room full of friends, he had a way of making every moment feel like it deserved a soundtrack.</p>
+        <p>Family was never just what existed by default for Sukeerth. It began with his parents, grandparents, aunts, uncles, &amp; cousins, but extended far beyond that. Family was also the one he made. Friends became brothers in arms. The parents of friends became his own. People he met in the most random of places became lifelong family. Children he befriended, aunts and uncles by affection rather than blood.</p>
+        <p>That is how Sukeerth loved his families. Not just the one he was born into, but the ones he spent a lifetime building, one person at a time. Every tune now carries his voice, every memory now carries his soul. Thank you for making life alive for us, Sukeerth, and for being the frontman of countless, cherished memories.</p>
       </div>
     </div>
   </section>
@@ -707,11 +707,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
             <span>I'll be there</span>
           </label>
-          <input type="radio" id="rMaybe" name="attending" value="maybe" />
-          <label for="rMaybe">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4.5l3 2"/></svg>
-            <span>Maybe</span>
-          </label>
           <input type="radio" id="rNo" name="attending" value="no" />
           <label for="rNo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 7l10 10M17 7L7 17"/></svg>
@@ -740,7 +735,7 @@
 </main>
 
 <footer>
-  <div class="f-name">Sukeerth</div>
+  <div class="f-name">K.V. Sukeerth</div>
   <div>Forever in our hearts</div>
 </footer>
 
@@ -802,7 +797,7 @@ const CONFIG = {
   rsvpEntryContact: "entry.230755771",   // "Phone number"
   rsvpEntryAttending: "entry.605324899", // "Attending?"
   // Must match the Google Form's multiple-choice options exactly
-  rsvpAnswers: { yes: "Yes", no: "No", maybe: "Maybe" },
+  rsvpAnswers: { yes: "Yes", no: "No" },
 };
 
 /* Sample memories shown only until memoriesCsvUrl is set (for previewing the layout) */
@@ -1157,9 +1152,7 @@ document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
   const answer = choice.value;
   const thanks = answer === "yes"
     ? "Thank you, " + name + ". We look forward to seeing you on 11 December."
-    : answer === "maybe"
-      ? "Thank you, " + name + ". We hope you can make it."
-      : "Thank you for letting us know, " + name + ". You'll be with us in spirit.";
+    : "Thank you for letting us know, " + name + ". You'll be with us in spirit.";
 
   btn.disabled = true; btn.textContent = "Sending…";
   if (!CONFIG.rsvpFormAction) {

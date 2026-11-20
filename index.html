@@ -271,6 +271,7 @@
   .frame-img { position: relative; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%; }
   .is-fit .frame-bg { opacity: 1; }
   .is-fit .frame-img { object-fit: contain; object-position: center; }
+  .frame-pending .frame-img { object-fit: contain; }
   .slide .caption {
     position: absolute; left: 0; right: 0; bottom: 0;
     padding: 40px 22px 18px;
@@ -933,10 +934,12 @@ function smartPhoto(frame, url, alt) {
     if (!img.naturalWidth || !frame.clientHeight) return;
     const photo = img.naturalWidth / img.naturalHeight;
     const box = frame.clientWidth / frame.clientHeight;
-    // Fill the frame only if that would trim less than ~12% of the photo; otherwise show it whole
-    frame.classList.toggle("is-fit", Math.abs(photo / box - 1) > 0.12);
+    // Fill the frame only if the shapes almost match (trims under ~4%); otherwise show the whole photo
+    frame.classList.toggle("is-fit", Math.abs(photo / box - 1) > 0.04);
   };
-  if (img.complete) fit(); else img.addEventListener("load", fit);
+  img.addEventListener("load", fit);
+  // Also measure once the frame is on screen (cached photos load before that)
+  requestAnimationFrame(() => requestAnimationFrame(fit));
   _frames.push(fit);
 }
 let _rt;

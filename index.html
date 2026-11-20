@@ -364,6 +364,17 @@
     float: left; font-size: 4.2rem; line-height: 0.85;
     padding: 6px 10px 0 0; color: var(--gold);
   }
+  .traits { letter-spacing: 0.04em; }
+  .traits span { color: var(--gold); margin: 0 6px; }
+  .quote cite, .head-quote cite {
+    display: block; margin-top: 14px; font-family: "Lato", sans-serif; font-style: normal;
+    font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  }
+  .quote cite span, .head-quote cite span { text-transform: none; letter-spacing: 0.02em; color: var(--ink-soft); }
+  .head-quote {
+    max-width: 680px; margin: 14px auto 0; font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 1.3rem; line-height: 1.55; color: var(--ink-soft);
+  }
   .quote {
     margin: 36px 0 0; padding: 26px 30px;
     border-left: 2px solid var(--gold);
@@ -598,8 +609,8 @@
   <!-- =================== ABOUT =================== -->
   <section class="panel active" id="about" role="tabpanel">
     <div class="section-head">
-      <h2>Remembering Sukeerth</h2>
-      <p>Son, brother, friend</p>
+      <h2>“I got you, Buddy!”</h2>
+      <p class="traits">Fiercely loyal <span>&middot;</span> Deeply caring <span>&middot;</span> Fearlessly positive <span>&middot;</span> Unbelievably positive</p>
     </div>
     <div class="about">
       <div class="about-photo" id="aboutPhoto"></div>
@@ -609,6 +620,9 @@
         <p>What started as a college band soon became something much bigger. The Nice Guys wrote original music, collaborated with other artists, performed in multiple cities / venues, and elevated every experience they were at. For Sukeerth, music was never just about performing; it was about bringing people together, creating memories, and sharing joy. Whether on stage or in a room full of friends, he had a way of making every moment feel like it deserved a soundtrack.</p>
         <p>Family was never just what existed by default for Sukeerth. It began with his parents, grandparents, aunts, uncles, &amp; cousins, but extended far beyond that. Family was also the one he made. Friends became brothers in arms. The parents of friends became his own. People he met in the most random of places became lifelong family. Children he befriended, aunts and uncles by affection rather than blood.</p>
         <p>That is how Sukeerth loved his families. Not just the one he was born into, but the ones he spent a lifetime building, one person at a time. Every tune now carries his voice, every memory now carries his soul. Thank you for making life alive for us, Sukeerth, and for being the frontman of countless, cherished memories.</p>
+        <blockquote class="quote">“Lucky and Me are really blessed to have had a wonderful, gifted, and great child in our lives.”
+          <cite>Lakshmi and Babu <span>(mother and father)</span></cite>
+        </blockquote>
       </div>
     </div>
   </section>
@@ -659,7 +673,9 @@
   <section class="panel" id="gallery" role="tabpanel">
     <div class="section-head">
       <h2>Gallery</h2>
-      <p>Moments we hold close</p>
+      <blockquote class="head-quote">“Every person he met, he won their hearts with his sweet smile and pleasing conversation, leaving an everlasting impression on them.”
+        <cite>Vasantha Ammamma and Kanthi Thatha <span>(grandmother and grandfather)</span></cite>
+      </blockquote>
     </div>
     <div class="gallery" id="galleryGrid"></div>
   </section>

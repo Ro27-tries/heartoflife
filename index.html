@@ -236,17 +236,16 @@
   .rsvp-submit { width: 100%; margin-top: auto; padding: 15px 30px; }
   .rsvp-card .field:last-of-type { margin-bottom: 28px; }
   .rsvp-private {
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    margin-top: 14px; font-size: 0.82rem; color: var(--ink-soft);
+    margin-top: 14px; font-size: 0.82rem; color: var(--ink-soft); text-align: center; line-height: 1.5;
   }
-  .rsvp-private svg { width: 14px; height: 14px; color: var(--gold); }
+  .rsvp-private svg { width: 13px; height: 13px; color: var(--gold); display: inline-block; vertical-align: -1px; margin-right: 4px; }
   .rsvp-card .form-msg { text-align: center; }
 
   /* ---------- Carousel ---------- */
   .carousel {
     position: relative;
-    aspect-ratio: 4 / 5;
-    max-height: 560px;
+    aspect-ratio: 4 / 3;
+    max-height: 480px;
     width: 100%;
     border-radius: var(--radius);
     overflow: hidden;
@@ -271,7 +270,7 @@
   .frame-img { position: relative; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%; }
   .is-fit .frame-bg { opacity: 1; }
   .is-fit .frame-img { object-fit: contain; object-position: center; }
-  .frame-pending .frame-img { object-fit: contain; }
+  .is-fit { background: var(--cream-deep); }
   .slide .caption {
     position: absolute; left: 0; right: 0; bottom: 0;
     padding: 40px 22px 18px;
@@ -361,7 +360,7 @@
     display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: start;
   }
   .about-photo {
-    aspect-ratio: 3 / 4; border-radius: var(--radius); overflow: hidden;
+    aspect-ratio: 2 / 3; border-radius: var(--radius); overflow: hidden;
     box-shadow: var(--shadow); outline: 6px solid var(--paper);
     position: sticky; top: 100px;
   }
@@ -526,7 +525,7 @@
     .banner-inner { grid-template-columns: 1fr; padding: 48px 22px 44px; gap: 36px; text-align: center; }
     .divider { margin: 24px auto; }
     .tagline { margin: 0 auto; }
-    .carousel { aspect-ratio: 4 / 4.4; max-height: 480px; }
+    .carousel { aspect-ratio: 4 / 3; max-height: 480px; }
     .carousel-btn { opacity: 1; }
     .about { grid-template-columns: 1fr; gap: 32px; }
     .about-photo { position: relative; top: auto; width: 100%; max-width: 280px; margin: 0 auto; }
@@ -556,7 +555,7 @@
     .tagline { font-size: 1.15rem; }
     .cta-row { margin-top: 22px; gap: 10px; }
     .banner-cta { padding: 12px 20px; font-size: 0.78rem; letter-spacing: 0.1em; }
-    .carousel { aspect-ratio: 1 / 1; outline-width: 5px; }
+    .carousel { aspect-ratio: 4 / 3; outline-width: 5px; }
     .tab-long { display: none; }
     .tabs { justify-content: space-between; padding: 0 4px; }
     .tab { flex: 1; padding: 16px 4px 14px; font-size: 0.74rem; letter-spacing: 0.12em; }
@@ -587,7 +586,7 @@
       <h1 class="name">K.V. Sukeerth</h1>
       <div class="dates">1996 &nbsp;—&nbsp; 2026</div>
       <div class="divider"></div>
-      <p class="tagline">"A line that captures who he was, a favourite saying, or words from the family."</p>
+      <p class="tagline">A little mischief in his smile, a thousand melodies in his soul, a place for everyone at his table and a heart that always found room for one more.</p>
       <div class="cta-row">
         <button class="banner-cta primary" onclick="showTab('rsvp', true)">RSVP to the Tribute</button>
         <button class="banner-cta" onclick="showTab('memories', true)">Share a Memory</button>
@@ -619,15 +618,16 @@
   <section class="panel active" id="about" role="tabpanel">
     <div class="section-head">
       <h2>“I got you, Buddy!”</h2>
-      <p class="traits">Fiercely loyal <span>&middot;</span> Deeply caring <span>&middot;</span> Fearlessly positive <span>&middot;</span> Unbelievably positive</p>
+      <p class="traits">Fiercely loyal, Deeply caring, Incredibly positive</p>
     </div>
     <div class="about">
       <div class="about-photo" id="aboutPhoto"></div>
       <div class="about-text">
-        <p>Sukeerth was a big man, with an even bigger heart, always decked in fancy sweaters in every Bengaluru weather. He loved playing games with his cousins, he loved seeing the world with his parents, he loved listening to his grandparents’ stories, he loved performing with his friends, and he loved spending time with everyone he loved — a logistical challenge that came so easy to him.</p>
-        <p>Sukeerth truly embodied the belief that music is life and life is a musical. His toddler cries helped crack high pitches. His Carnatic training helped build his range. His school choir revealed it to all of us. College was where Sukeerth explored different genres and styles, taught himself the guitar and keyboard, performed at Battle of the Bands competitions and inter-collegiate festivals, and embraced every opportunity to be on stage. It was also during this time that he and his friends formed The Nice Guys.</p>
-        <p>What started as a college band soon became something much bigger. The Nice Guys wrote original music, collaborated with other artists, performed in multiple cities / venues, and elevated every experience they were at. For Sukeerth, music was never just about performing; it was about bringing people together, creating memories, and sharing joy. Whether on stage or in a room full of friends, he had a way of making every moment feel like it deserved a soundtrack.</p>
-        <p>Family was never just what existed by default for Sukeerth. It began with his parents, grandparents, aunts, uncles, &amp; cousins, but extended far beyond that. Family was also the one he made. Friends became brothers in arms. The parents of friends became his own. People he met in the most random of places became lifelong family. Children he befriended, aunts and uncles by affection rather than blood.</p>
+        <p>Music Aficionado, Amateur Photographer, Tax Specialist, Thoughtful Manager, Community Builder, Family Man — these best describe the outer world of Sukeerth, the son of Lakshmi and Venkatesh Babu. Sukeerth was a big man, standing at over 6 feet &amp; 3 inches, with an even bigger heart, always decked in fancy sweaters in every Bengaluru weather.</p>
+        <p>He loved playing games with his cousins, he loved seeing the world with his parents, he loved listening to his grandparents’ stories, he loved performing with his friends, and he loved spending time with everyone he loved — a logistical challenge that came so easy to him.</p>
+        <p>Music is synonymous with Sukeerth. He truly embodied the belief that music is life and life is a musical. Perhaps we should have known from his toddler cries that they were only the beginning of his remarkably high pitch. He began his musical journey the traditional way, learning Carnatic music alongside his mum and aunts, but he found his voice in the school choir. By the time he reached college, music had become much more than a passion, it was his way of life.</p>
+        <p>For Sukeerth, family was never just what existed by default. It began with his parents, grandparents, aunts, uncles, &amp; cousins, but extended far beyond that. Family was also the one he made. Friends became brothers in arms. The parents of friends became his own. People he met in the most random of places became lifelong family. Children he befriended, aunts and uncles by affection rather than blood.</p>
+        <p>He made it a point to build a unique bond with every single person in his life. He shared himself openly, invited others to do the same, listened without judgement, and loved people the way they wanted to be loved. He understood that everyone was fighting battles of their own, and he quietly made it his responsibility to ensure that the people he loved never fought those battles alone.</p>
         <p>That is how Sukeerth loved his families. Not just the one he was born into, but the ones he spent a lifetime building, one person at a time. Every tune now carries his voice, every memory now carries his soul. Thank you for making life alive for us, Sukeerth, and for being the frontman of countless, cherished memories.</p>
         <blockquote class="quote">“Lucky and Me are really blessed to have had a wonderful, gifted, and great child in our lives.”
           <cite>Lakshmi and Babu <span>(mother and father)</span></cite>
@@ -692,8 +692,8 @@
   <!-- =================== RSVP =================== -->
   <section class="panel" id="rsvp" role="tabpanel">
     <div class="section-head">
-      <h2>Tribute to Sukeerth</h2>
-      <p>Join us as we come together to remember and celebrate him</p>
+      <h2>To the Nicest Guy</h2>
+      <p>A tribute to the man, the music and the memories</p>
     </div>
 
     <div class="rsvp">
@@ -708,7 +708,7 @@
           <div class="event-main">
             <div class="event-kicker">A Gathering in His Memory</div>
             <div class="event-when">Friday, 11 December 2026</div>
-            <div class="event-time">6:00 PM onwards</div>
+            <div class="event-time">7:00 PM onwards</div>
           </div>
         </div>
 
@@ -728,14 +728,13 @@
 
         <div class="event-actions">
           <a class="ev-btn" href="https://www.google.com/maps/search/?api=1&amp;query=The+Raft+Koramangala+Bengaluru" target="_blank" rel="noopener">Get Directions</a>
-          <a class="ev-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Tribute+to+Sukeerth&amp;dates=20261211T123000Z/20261211T153000Z&amp;location=The+Raft,+Koramangala,+Bengaluru&amp;details=A+gathering+to+remember+and+celebrate+Sukeerth." target="_blank" rel="noopener">Add to Calendar</a>
+          <a class="ev-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Tribute+to+Sukeerth&amp;dates=20261211T133000Z/20261211T163000Z&amp;location=The+Raft,+Koramangala,+Bengaluru&amp;details=A+gathering+to+remember+and+celebrate+Sukeerth." target="_blank" rel="noopener">Add to Calendar</a>
         </div>
       </div>
 
       <form class="rsvp-card" id="rsvpForm" novalidate>
-        <div class="event-kicker">Kindly Respond</div>
         <h3>Will you join us?</h3>
-        <p class="rsvp-sub">Let the family know so they can prepare to welcome you.</p>
+        <p class="rsvp-sub">Your confirmation will help us plan the evening.</p>
 
         <div class="choice" role="radiogroup" aria-label="Will you attend?">
           <input type="radio" id="rYes" name="attending" value="yes" />
@@ -762,7 +761,7 @@
         <button class="submit rsvp-submit" type="submit">Send RSVP</button>
         <p class="rsvp-private">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-          Only the family will see your details.
+          The information provided will be used solely for event-related communication.
         </p>
         <p class="form-msg" id="rsvpMsg" role="status"></p>
       </form>
@@ -772,7 +771,7 @@
   <section class="panel" id="music" role="tabpanel">
     <div class="section-head">
       <h2>His Music</h2>
-      <p>Press play, and let him sing for us a little longer</p>
+      <p>A John Mayer fan forever</p>
     </div>
     <div class="music-card">
       <div class="player">
@@ -809,6 +808,8 @@ const CONFIG = {
   //   - banner carousel: banner-1, banner-2, ... (stops at the first missing number)
   //   - gallery: gallery/001.jpg, 002.jpg ... with thumbs/001.jpg ... (loads when the Gallery tab is opened)
   imagesFolder: "images",
+  // Banner numbers to leave out of the carousel (the files stay in the folder)
+  hideBanners: [9],
 
   // Banner carousel (right side of the banner)
   carouselImages: [
@@ -908,7 +909,8 @@ async function findNumbered(makeSrc, batch = 8, exact = false, max = 999) {
 }
 async function bannerList() {
   const urls = await findNumbered(n => CONFIG.imagesFolder + "/banner-" + n + ".jpg", 6);
-  return urls.map(url => ({ url, caption: "" }));
+  const hide = new Set((CONFIG.hideBanners || []).map(n => "banner-" + n + "."));
+  return urls.filter(u => ![...hide].some(h => u.includes("/" + h))).map(url => ({ url, caption: "" }));
 }
 async function galleryList() {
   const pad = n => String(n).padStart(3, "0");
@@ -924,18 +926,18 @@ async function galleryList() {
 // Puts a photo in a frame without cropping off heads (see .frame-bg CSS)
 const _frames = [];
 function smartPhoto(frame, url, alt) {
-  const bg = document.createElement("div");
-  bg.className = "frame-bg";
-  bg.style.backgroundImage = 'url("' + url + '")';
   const img = makeImg(url, alt);
   img.classList.add("frame-img");
-  frame.append(bg, img);
+  frame.append(img);
   const fit = () => {
     if (!img.naturalWidth || !frame.clientHeight) return;
     const photo = img.naturalWidth / img.naturalHeight;
     const box = frame.clientWidth / frame.clientHeight;
-    // Fill the frame only if the shapes almost match (trims under ~4%); otherwise show the whole photo
-    frame.classList.toggle("is-fit", Math.abs(photo / box - 1) > 0.04);
+    // Filling the frame trims the sides of a wider photo (safe for faces) but the top/bottom of a
+    // taller one (risky). So: wider photos fill unless very much wider; taller ones fill only if
+    // they almost match. Otherwise the whole photo is shown on a soft mat.
+    const r = photo / box;
+    frame.classList.toggle("is-fit", r > 1 ? r > 1.2 : r < 0.96);
   };
   img.addEventListener("load", fit);
   // Also measure once the frame is on screen (cached photos load before that)

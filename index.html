@@ -756,6 +756,10 @@
           <input id="rContact" name="contact" type="tel" required maxlength="30" autocomplete="tel" placeholder=" " />
           <label for="rContact">Phone number</label>
         </div>
+        <div class="field">
+        <input id="rEmail" name="email" type="email" required maxlength="120" autocomplete="email" placeholder=" " />
+          <label for="rEmail">Email address</label>
+        </div>
 
         <button class="submit rsvp-submit" type="submit">Send RSVP</button>
         <p class="rsvp-private">
@@ -845,6 +849,7 @@ const CONFIG = {
   rsvpFormAction: "https://docs.google.com/forms/d/e/1FAIpQLSf1o6zfIfKWQR6_CE9dDMGa0ZSrF3DZsReyxpgbT_HJxtbpng/formResponse",
   rsvpEntryName: "entry.1613439727",
   rsvpEntryContact: "entry.230755771",   // "Phone number"
+  rsvpEntryEmail: "entry.598024265",
   rsvpEntryAttending: "entry.605324899", // "Attending?"
   // Must match the Google Form's multiple-choice options exactly
   rsvpAnswers: { yes: "Yes", no: "No" },
@@ -1216,11 +1221,13 @@ document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
   const form = e.target;
   const msg = document.getElementById("rsvpMsg");
   const btn = form.querySelector(".submit");
-  const name = form.name.value.trim(), contact = form.contact.value.trim();
+  const name = form.name.value.trim(), 
+  const contact = form.contact.value.trim();
+  const email = form.email.value.trim();
   const choice = form.querySelector('input[name="attending"]:checked');
 
-  if (!name || !contact || !choice) {
-    msg.textContent = "Please add your name, a phone number, and whether you'll attend.";
+  if (!name || !contact || !choice || !email || !form.email.checkValidity() || !choice) {
+    msg.textContent = "Please add your name, a phone number, an email address and whether you'll attend.";
     msg.classList.add("show");
     return;
   }
@@ -1237,6 +1244,7 @@ document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
     const data = new FormData();
     data.append(CONFIG.rsvpEntryName, name);
     data.append(CONFIG.rsvpEntryContact, contact);
+    data.append(CONFIG.rsvpEntryEmail, email);
     data.append(CONFIG.rsvpEntryAttending, CONFIG.rsvpAnswers[answer]);
     try {
       await fetch(CONFIG.rsvpFormAction, { method: "POST", mode: "no-cors", body: data });
